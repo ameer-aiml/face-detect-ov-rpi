@@ -2,8 +2,8 @@ import datetime
 import time
 import cv2 as cv
 # Load the model.
-net = cv.dnn.readNet('face-detection-adas-0001.xml',
-                     'face-detection-adas-0001.bin')
+net = cv.dnn.readNet('face-detection-retail-0004.xml',
+                     'face-detection-retail-0004.bin')
 # Specify target device
 net.setPreferableTarget(cv.dnn.DNN_TARGET_MYRIAD)
 # Read an image - used an extracted image the open source video: face-detection for this example
@@ -24,9 +24,7 @@ for detection in out.reshape(-1, 7):
     if confidence > 0.5:
         cv.rectangle(frame, (xmin, ymin), (xmax, ymax), color=(0, 255, 0))
 # Save the frame to an image file:
-# Create a date_string variable with the format
-date_string = time.strftime("%Y-%m-%d-%H:%M:%S")
-# create imageName variable that takes adds the date_string to the output file name
-imageName = 'test' + date_string +'.png'
+# create imageName variable
+imageName = 'op.png'
 # output with name and frame
 cv.imwrite( imageName, frame );
